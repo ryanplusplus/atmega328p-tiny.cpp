@@ -9,7 +9,7 @@
 #include "tiny/hal/IUart.h"
 
 class Usart0 {
-  static auto get_instance(uint16_t baud) -> tiny::IUart&;
+  static auto get_instance(bool u2x, uint16_t brr) -> tiny::IUart&;
 };
 
 #endif

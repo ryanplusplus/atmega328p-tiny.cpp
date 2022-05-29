@@ -10,10 +10,12 @@
 
 static class : public tiny::IUart {
  public:
-  auto init(uint16_t baud) -> void
+  auto init(bool u2x, uint16_t brr) -> void
   {
     // Enable USART0 clock
     PRR &= ~_BV(PRUSART0);
+
+    UCSR0A = _BV(u2x);
 
     // Enable RX, TX, and corresponding interrupts
     UCSR0B = _BV(RXCIE0) | _BV(TXCIE0) | _BV(RXEN0) | _BV(TXEN0);
@@ -22,8 +24,8 @@ static class : public tiny::IUart {
     UCSR0C = _BV(UCSZ01) | _BV(UCSZ00);
 
     // Set baud
-    UBRR0H = (baud >> 8);
-    UBRR0L = (baud & 0xFF);
+    UBRR0H = (brr >> 8);
+    UBRR0L = (brr & 0xFF);
   }
 
   auto send(uint8_t byte) -> void override
@@ -56,8 +58,8 @@ ISR(USART_TX_vect)
   instance.send_complete.publish();
 }
 
-auto Usart0::get_instance(uint16_t baud) -> tiny::IUart&
+auto Usart0::get_instance(bool u2x, uint16_t baud) -> tiny::IUart&
 {
-  instance.init(baud);
+  instance.init(u2x, baud);
   return instance;
 }
