@@ -18,7 +18,25 @@ ISR(TIMER0_COMPA_vect)
 
 static class : public ITimeSource {
  public:
-  virtual auto ticks() -> TickCount
+  auto init() -> void
+  {
+    // Enable TIMER 0 clock
+    PRR &= ~_BV(PRTIM0);
+
+    // Clear timer on compare match
+    TCCR0A = _BV(WGM01);
+
+    // Prescalar 64
+    // Count 125
+    // 8 MHz / 64 / 125 == 1000 Hz
+    TCCR0B = _BV(CS01) | _BV(CS00);
+    OCR0A = 125;
+
+    // Enable compare match A interrupt
+    TIMSK0 = _BV(OCIE0A);
+  }
+
+  auto ticks() -> TickCount override
   {
     TickCount previous;
     TickCount current = current_ticks;
@@ -34,20 +52,6 @@ static class : public ITimeSource {
 
 auto SystemTick::get_instance() -> ITimeSource&
 {
-  // Enable TIMER 0 clock
-  PRR &= ~_BV(PRTIM0);
-
-  // Clear timer on compare match
-  TCCR0A = _BV(WGM01);
-
-  // Prescalar 64
-  // Count 125
-  // 8 MHz / 64 / 125 == 1000 Hz
-  TCCR0B = _BV(CS01) | _BV(CS00);
-  OCR0A = 125;
-
-  // Enable compare match A interrupt
-  TIMSK0 = _BV(OCIE0A);
-
+  instance.init();
   return instance;
 }

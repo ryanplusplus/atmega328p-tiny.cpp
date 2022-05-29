@@ -12,33 +12,31 @@ static class : public tiny::IUart {
  public:
   auto init(uint16_t baud) -> void
   {
-    {
-      // Enable USART0 clock
-      PRR &= ~_BV(PRUSART0);
+    // Enable USART0 clock
+    PRR &= ~_BV(PRUSART0);
 
-      // Enable RX, TX, and corresponding interrupts
-      UCSR0B = _BV(RXCIE0) | _BV(TXCIE0) | _BV(RXEN0) | _BV(TXEN0);
+    // Enable RX, TX, and corresponding interrupts
+    UCSR0B = _BV(RXCIE0) | _BV(TXCIE0) | _BV(RXEN0) | _BV(TXEN0);
 
-      // Asynchronous mode, no parity, 1 stop bit, 8 data bits
-      UCSR0C = _BV(UCSZ01) | _BV(UCSZ00);
+    // Asynchronous mode, no parity, 1 stop bit, 8 data bits
+    UCSR0C = _BV(UCSZ01) | _BV(UCSZ00);
 
-      // Set baud
-      UBRR0H = (baud >> 8);
-      UBRR0L = (baud & 0xFF);
-    }
+    // Set baud
+    UBRR0H = (baud >> 8);
+    UBRR0L = (baud & 0xFF);
   }
 
-  virtual auto send(uint8_t byte) -> void
+  auto send(uint8_t byte) -> void override
   {
     UDR0 = byte;
   }
 
-  virtual auto on_send_complete() -> tiny::IEvent<>&
+  auto on_send_complete() -> tiny::IEvent<>& override
   {
     return send_complete;
   }
 
-  virtual auto on_receive() -> tiny::IEvent<uint8_t>&
+  auto on_receive() -> tiny::IEvent<uint8_t>& override
   {
     return receive;
   }
