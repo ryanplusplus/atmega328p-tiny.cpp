@@ -1,4 +1,4 @@
-# avr-tiny
+# atmega328p-tiny.cpp-starter-kit
 ## Setup
 Install toolchain with `apt`:
 ```shell
