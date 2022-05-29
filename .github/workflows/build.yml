@@ -1,0 +1,23 @@
+name: Target Build
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - uses: SimenB/github-actions-cpu-cores@v1
+
+    - uses: actions/checkout@v3
+      with:
+        submodules: 'recursive'
+
+    - run: make -f target.mk install_toolchain
+
+    - run: make -j${{ steps.cpu-cores.outputs.count }} -f target.mk
