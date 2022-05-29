@@ -40,14 +40,13 @@ class Interrupts {
     SREG = state;
   }
 
-  // static auto critical_section(
+  template <typename t>
+  static auto critical_section(t body) -> void
+  {
+    uint8_t state = Interrupts::save();
+    body();
+    Interrupts::restore(state);
+  }
 };
-
-#define Interrupts_critical_section(...) \
-  do {                                   \
-    uint8_t state = Interrupts::save();  \
-    __VA_ARGS__                          \
-    Interrupts::restore(state);          \
-  } while(0)
 
 #endif
