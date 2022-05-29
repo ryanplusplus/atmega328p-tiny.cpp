@@ -1,0 +1,23 @@
+{
+  "configurations": [
+    {
+      "name": "ATmega328p",
+      "defines": [
+        "__AVR_ATmega328P__",
+        "F_CPU=8000000UL"
+      ],
+      "compilerPath": "/usr/bin/avr-gcc",
+      "includePath": [
+        "${workspaceFolder}/lib/cpp/include",
+        "${workspaceFolder}/lib/tiny.cpp/include",
+        "${workspaceFolder}/tools/dfp/Microchip.ATmega_DFP.2.3.126/include",
+        "${workspaceFolder}/src",
+        "${workspaceFolder}/src/hardware"
+      ],
+      "intelliSenseMode": "gcc-x64",
+      "cStandard": "c11",
+      "cppStandard": "c++17"
+    }
+  ],
+  "version": 4
+}
