@@ -2,7 +2,7 @@
 ## Setup
 Install toolchain with `apt`:
 ```shell
-sudo apt install avr-libc gdb-avr gcc-avr binutils-avr
+make -f target.mk install_toolchain
 ```
 
 Build from source:
