@@ -10,13 +10,13 @@
 #include "Interrupts.hpp"
 
 namespace Neopixel {
-  enum Port {
+  enum class Port {
     B,
     C,
     D
   };
 
-  enum ByteOrder {
+  enum class ByteOrder {
     Grb,
     Rgb,
     Rgbw
