@@ -7,7 +7,7 @@
 #define Watchdog_hpp
 
 #include <avr/wdt.h>
-#include "tiny/Timer.h"
+#include "tiny/Timer.hpp"
 
 class Watchdog {
  public:

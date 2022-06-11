@@ -6,7 +6,7 @@
 #ifndef SystemTick_hpp
 #define SystemTick_hpp
 
-#include "tiny/ITimeSource.h"
+#include "tiny/ITimeSource.hpp"
 
 class SystemTick {
  public:

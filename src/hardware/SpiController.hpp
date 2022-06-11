@@ -8,7 +8,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-#include "tiny/hal/ISpi.h"
+#include "tiny/hal/ISpi.hpp"
 
 class SpiController {
   static_assert(F_CPU == 8000000, "8 MHz clock is required");

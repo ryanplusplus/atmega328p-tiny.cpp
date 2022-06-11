@@ -6,7 +6,7 @@
 #ifndef Heartbeat_hpp
 #define Heartbeat_hpp
 
-#include "tiny/Timer.h"
+#include "tiny/Timer.hpp"
 
 class Heartbeat {
  public:

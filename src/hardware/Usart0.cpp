@@ -6,7 +6,7 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include "Usart0.hpp"
-#include "tiny/SingleSubscriberEvent.h"
+#include "tiny/SingleSubscriberEvent.hpp"
 
 static class : public tiny::IUart {
  public:

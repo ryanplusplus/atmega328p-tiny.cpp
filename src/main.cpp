@@ -9,7 +9,7 @@
 #include "Heartbeat.hpp"
 #include "Interrupts.hpp"
 #include "Neopixel.hpp"
-#include "tiny/Timer.h"
+#include "tiny/Timer.hpp"
 
 using namespace tiny;
 
