@@ -16,7 +16,7 @@ class Heartbeat {
     DDRB |= _BV(5);
 
     timer_group.start_periodic(
-      this->timer, period, (void*)nullptr, +[](void*) {
+      this->timer, period, +[](void*) {
         PINB |= _BV(5);
       });
   }
