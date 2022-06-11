@@ -17,8 +17,7 @@ class Watchdog {
     wdt_enable(WDTO_500MS);
 
     timer_group.start_periodic(
-      this->timer, period, (void*)nullptr, +[](void* context) {
-        (void)context;
+      this->timer, period, (void*)nullptr, +[](void*) {
         wdt_reset();
       });
   }
