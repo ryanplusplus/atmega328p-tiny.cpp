@@ -50,13 +50,16 @@ namespace Neopixel {
   template <ByteOrder byte_order, Port port, uint8_t pin>
   class Neopixel {
    public:
+    using Color = ::Neopixel::Color<byte_order>;
+
+   public:
     Neopixel()
     {
       _SFR_IO8(ddr_address()) |= _BV(pin);
     }
 
    public:
-    auto write(const Color<byte_order>* data, uint16_t count) -> void
+    auto write(const Color* data, uint16_t count) -> void
     {
       Interrupts::critical_section([&]() {
         for(uint16_t i = 0; i < count; i++) {
@@ -67,7 +70,7 @@ namespace Neopixel {
       });
     }
 
-    auto write_all(const Color<byte_order>* data, uint16_t count) -> void
+    auto write_all(const Color* data, uint16_t count) -> void
     {
       Interrupts::critical_section([&]() {
         for(uint16_t i = 0; i < count; i++) {
