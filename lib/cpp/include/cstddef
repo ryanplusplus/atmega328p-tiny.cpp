@@ -10,4 +10,8 @@ extern "C" {
 #include <stddef.h>
 }
 
+namespace std {
+  using ::max_align_t;
+}
+
 #endif
