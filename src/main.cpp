@@ -12,7 +12,7 @@
 #include "tiny/Timer.hpp"
 
 using namespace tiny;
-using Pb0Neopixel = Neopixel::Neopixel<Neopixel::ByteOrder::Grb, Neopixel::Port::B, 0>;
+using Pb0Neopixel = Neopixel::Neopixel<Neopixel::ByteOrder::grb, Neopixel::Port::b, 0>;
 
 int main(void)
 {

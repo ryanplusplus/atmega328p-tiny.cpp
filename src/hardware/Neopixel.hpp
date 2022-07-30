@@ -11,36 +11,36 @@
 
 namespace Neopixel {
   enum class Port {
-    B,
-    C,
-    D
+    b,
+    c,
+    d
   };
 
   enum class ByteOrder {
-    Grb,
-    Rgb,
-    Rgbw
+    grb,
+    rgb,
+    rgbw
   };
 
   template <ByteOrder byte_order>
   struct Color;
 
   template <>
-  struct Color<ByteOrder::Grb> {
+  struct Color<ByteOrder::grb> {
     uint8_t g;
     uint8_t r;
     uint8_t b;
   };
 
   template <>
-  struct Color<ByteOrder::Rgb> {
+  struct Color<ByteOrder::rgb> {
     uint8_t r;
     uint8_t g;
     uint8_t b;
   };
 
   template <>
-  struct Color<ByteOrder::Rgbw> {
+  struct Color<ByteOrder::rgbw> {
     uint8_t r;
     uint8_t g;
     uint8_t b;
@@ -103,14 +103,14 @@ namespace Neopixel {
     static constexpr auto port_address() -> uint16_t const
     {
       switch(port) {
-        case Port::B:
+        case Port::b:
           return _SFR_IO_ADDR(PORTB);
 
-        case Port::C:
+        case Port::c:
           return _SFR_IO_ADDR(PORTC);
 
         default:
-        case Port::D:
+        case Port::d:
           return _SFR_IO_ADDR(PORTD);
       }
     }
@@ -118,14 +118,14 @@ namespace Neopixel {
     static constexpr auto ddr_address() -> uint16_t const
     {
       switch(port) {
-        case Port::B:
+        case Port::b:
           return _SFR_IO_ADDR(DDRB);
 
-        case Port::C:
+        case Port::c:
           return _SFR_IO_ADDR(DDRC);
 
         default:
-        case Port::D:
+        case Port::d:
           return _SFR_IO_ADDR(DDRD);
       }
     }
