@@ -24,11 +24,11 @@ class SpiController {
     baud_62500hz = 3
   };
 
-  static auto get_instance(
+  static tiny::ISpi& get_instance(
     uint8_t cpol,
     uint8_t cpha,
     bool msb_first,
-    Baud baud) -> tiny::ISpi&;
+    Baud baud);
 };
 
 #endif

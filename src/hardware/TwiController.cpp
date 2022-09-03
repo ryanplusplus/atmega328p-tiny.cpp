@@ -42,7 +42,7 @@ enum {
 
 static class : public II2c {
  public:
-  auto init() -> void
+  void init()
   {
     // Enable TWI clock
     PRR &= ~_BV(PRTWI);
@@ -50,53 +50,53 @@ static class : public II2c {
     reset();
   }
 
-  static auto status() -> uint8_t
+  static uint8_t status()
   {
     return TWSR & 0xFC;
   }
 
-  static auto wait_for_complete() -> void
+  static void wait_for_complete()
   {
     loop_until_bit_is_set(TWCR, TWINT);
   }
 
-  static auto start() -> void
+  static void start()
   {
     TWCR = _BV(TWINT) | _BV(TWEN) | _BV(TWSTA);
     wait_for_complete();
   }
 
-  static auto stop() -> void
+  static void stop()
   {
     TWCR = _BV(TWINT) | _BV(TWEN) | _BV(TWSTO);
   }
 
-  static auto read_byte_ack() -> uint8_t
+  static uint8_t read_byte_ack()
   {
     TWCR = _BV(TWINT) | _BV(TWEN) | _BV(TWEA);
     wait_for_complete();
     return TWDR;
   }
 
-  static auto read_byte_nack() -> uint8_t
+  static uint8_t read_byte_nack()
   {
     TWCR = _BV(TWINT) | _BV(TWEN);
     wait_for_complete();
     return TWDR;
   }
 
-  static auto write_byte(uint8_t byte) -> void
+  static void write_byte(uint8_t byte)
   {
     TWDR = byte;
     TWCR = _BV(TWINT) | _BV(TWEN);
     wait_for_complete();
   }
 
-  auto write(
+  bool write(
     uint8_t address,
     bool prepare_for_restart,
     const uint8_t* _buffer,
-    uint16_t buffer_size) -> bool override
+    uint16_t buffer_size) override
   {
     auto buffer = reinterpret_cast<const uint8_t*>(_buffer);
 
@@ -118,11 +118,11 @@ static class : public II2c {
     return true;
   }
 
-  auto read(
+  bool read(
     uint8_t address,
     bool prepare_for_restart,
     uint8_t* _buffer,
-    uint16_t buffer_size) -> bool override
+    uint16_t buffer_size) override
   {
     auto buffer = reinterpret_cast<uint8_t*>(_buffer);
 
@@ -150,7 +150,7 @@ static class : public II2c {
     return true;
   }
 
-  auto reset() -> void override
+  void reset() override
   {
     // Disable peripheral
     TWCR &= ~_BV(TWEN);
@@ -164,7 +164,7 @@ static class : public II2c {
   }
 } instance;
 
-auto TwiController::get_instance() -> tiny::II2c&
+tiny::II2c& TwiController::get_instance()
 {
   instance.init();
   return instance;

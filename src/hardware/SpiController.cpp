@@ -17,7 +17,7 @@ using namespace tiny;
 
 static class : public ISpi {
  public:
-  auto init(
+  void init(
     uint8_t cpol,
     uint8_t cpha,
     bool msb_first,
@@ -41,10 +41,10 @@ static class : public ISpi {
     SPSR = baud >> 2;
   }
 
-  auto transfer(
+  void transfer(
     const uint8_t* _write_buffer,
     uint8_t* _read_buffer,
-    uint16_t buffer_size) -> void override
+    uint16_t buffer_size) override
   {
     auto write_buffer = reinterpret_cast<const uint8_t*>(_write_buffer);
     auto read_buffer = reinterpret_cast<uint8_t*>(_read_buffer);
@@ -59,11 +59,11 @@ static class : public ISpi {
   }
 } instance;
 
-auto SpiController::get_instance(
+tiny::ISpi& SpiController::get_instance(
   uint8_t cpol,
   uint8_t cpha,
   bool msb_first,
-  Baud baud) -> tiny::ISpi&
+  Baud baud)
 {
   instance.init(cpol, cpha, msb_first, baud);
   return instance;

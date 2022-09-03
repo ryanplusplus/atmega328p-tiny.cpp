@@ -59,7 +59,7 @@ namespace Neopixel {
     }
 
    public:
-    auto write(const Color* data, uint16_t count) -> void
+    void write(const Color* data, uint16_t count)
     {
       Interrupts::critical_section([&]() {
         for(uint16_t i = 0; i < count; i++) {
@@ -70,7 +70,7 @@ namespace Neopixel {
       });
     }
 
-    auto write_all(const Color* data, uint16_t count) -> void
+    void write_all(const Color* data, uint16_t count)
     {
       Interrupts::critical_section([&]() {
         for(uint16_t i = 0; i < count; i++) {
@@ -81,7 +81,7 @@ namespace Neopixel {
       });
     }
 
-    auto reset() -> void
+    void reset()
     {
 #if F_CPU == 8000000UL
       // 50 usec == 400 cycles @ 8 MHz
@@ -100,7 +100,7 @@ namespace Neopixel {
     }
 
    private:
-    static constexpr auto port_address() -> uint16_t const
+    static constexpr uint16_t port_address()
     {
       switch(port) {
         case Port::b:
@@ -115,7 +115,7 @@ namespace Neopixel {
       }
     }
 
-    static constexpr auto ddr_address() -> uint16_t const
+    static constexpr uint16_t ddr_address()
     {
       switch(port) {
         case Port::b:
@@ -130,7 +130,7 @@ namespace Neopixel {
       }
     }
 
-    static auto send_byte(uint8_t byte) -> void
+    static void send_byte(uint8_t byte)
     {
 #if F_CPU == 8000000UL
       __asm__ __volatile__(

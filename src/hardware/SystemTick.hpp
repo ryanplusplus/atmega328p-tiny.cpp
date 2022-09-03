@@ -10,7 +10,7 @@
 
 class SystemTick {
  public:
-  static auto get_instance() -> tiny::ITimeSource&;
+  static tiny::ITimeSource& get_instance();
 };
 
 #endif

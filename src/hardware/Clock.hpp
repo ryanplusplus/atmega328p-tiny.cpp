@@ -10,7 +10,7 @@
 
 class Clock {
  public:
-  static auto init() -> void
+  static void init()
   {
     // Gate peripheral clocks
     PRR = 0;

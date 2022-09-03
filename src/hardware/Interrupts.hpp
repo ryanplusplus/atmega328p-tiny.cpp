@@ -12,36 +12,36 @@
 
 class Interrupts {
  public:
-  static auto enable() -> void
+  static void enable()
   {
     sei();
   }
 
-  static auto disable() -> void
+  static void disable()
   {
     cli();
   }
 
-  static auto wait_for_interrupt() -> void
+  static void wait_for_interrupt()
   {
     SMCR = _BV(SE);
     __asm__ __volatile__("sleep");
   }
 
-  static auto save() -> uint8_t
+  static uint8_t save()
   {
     uint8_t state = SREG;
     disable();
     return state;
   }
 
-  static auto restore(uint8_t state) -> void
+  static void restore(uint8_t state)
   {
     SREG = state;
   }
 
   template <typename t>
-  static auto critical_section(t body) -> void
+  static void critical_section(t body)
   {
     uint8_t state = Interrupts::save();
     body();

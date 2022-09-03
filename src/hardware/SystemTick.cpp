@@ -18,7 +18,7 @@ ISR(TIMER0_COMPA_vect)
 
 static class : public ITimeSource {
  public:
-  auto init() -> void
+  void init()
   {
     // Enable TIMER 0 clock
     PRR &= ~_BV(PRTIM0);
@@ -36,7 +36,7 @@ static class : public ITimeSource {
     TIMSK0 = _BV(OCIE0A);
   }
 
-  auto ticks() -> TickCount override
+  TickCount ticks() override
   {
     TickCount previous;
     TickCount current = current_ticks;
@@ -50,7 +50,7 @@ static class : public ITimeSource {
   }
 } instance;
 
-auto SystemTick::get_instance() -> ITimeSource&
+ITimeSource& SystemTick::get_instance()
 {
   instance.init();
   return instance;
