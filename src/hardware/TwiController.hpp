@@ -9,7 +9,7 @@
 #include "tiny/hal/II2c.hpp"
 
 class TwiController {
-  static_assert(F_CPU == 8000000, "8 MHz clock is required");
+  static_assert(F_CPU == 8'000'000, "8 MHz clock is required");
 
  public:
   static tiny::II2c& get_instance();

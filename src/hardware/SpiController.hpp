@@ -11,7 +11,7 @@
 #include "tiny/hal/ISpi.hpp"
 
 class SpiController {
-  static_assert(F_CPU == 8000000, "8 MHz clock is required");
+  static_assert(F_CPU == 8'000'000, "8 MHz clock is required");
 
  public:
   enum Baud : uint8_t {
