@@ -5,22 +5,22 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "ATmega328p DebugWIRE (dwdebug)",
+      "name": "DebugWIRE (dwdebug)",
       "type": "cortex-debug",
       "cwd": "${workspaceRoot}",
-      "executable": "./build/atmega328p/atmega328p.elf",
+      "executable": "./build/tiny.elf",
       "request": "launch",
       "servertype": "openocd",
       "configFiles": [
         ""
       ],
-      "serverpath": "./build/atmega328p/debug-server-dwdebug",
+      "serverpath": "build/debug-server-dwdebug",
       "overrideLaunchCommands": [
-        "file ./build/atmega328p/atmega328p.elf",
+        "file ./build/tiny.elf",
         "load"
       ],
       "toolchainPrefix": "avr",
-      "preLaunchTask": "atmega328p-debug-deps",
+      "preLaunchTask": "debug-deps",
       "runToEntryPoint": "main"
     }
   ]
