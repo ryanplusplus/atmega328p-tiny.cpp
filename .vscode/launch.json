@@ -14,7 +14,7 @@
       "configFiles": [
         ""
       ],
-      "serverpath": "build/debug-server-dwdebug",
+      "serverpath": "${workspaceRoot}/build/debug-server-dwdebug",
       "overrideLaunchCommands": [
         "file ./build/tiny.elf",
         "load"

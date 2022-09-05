@@ -3,14 +3,14 @@ include tools/setup.mk
 TARGET := tiny
 MCU := atmega328p
 FRAMEWORK ?= tiny
-BUILD_DIR := ./build/$(TARGET)
+BUILD_DIR := ./build
 DEVICE_PACK := Microchip.ATmega_DFP.2.3.126
 
 # dwdebug or avrdude
 UPLOAD_TYPE := dwdebug
 AVRDUDE_PROGRAMMER_TYPE := atmelice_isp
 AVRDUDE_PROGRAMMER_ARGS :=
-DWDEBUG_DEVICE := ttyUSB0
+DWDEBUG_DEVICE ?= ttyUSB0
 
 DEFINES := \
   F_CPU=8000000UL \
