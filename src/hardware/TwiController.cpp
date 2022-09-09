@@ -6,7 +6,6 @@
 #include <stddef.h>
 #include <avr/io.h>
 #include "TwiController.hpp"
-#include "tiny/utils.h"
 
 using namespace tiny;
 

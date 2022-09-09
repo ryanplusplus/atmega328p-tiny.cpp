@@ -5,7 +5,6 @@
 
 #include <avr/io.h>
 #include "SpiController.hpp"
-#include "tiny/utils.h"
 
 #define SPI_DDR DDRB
 #define SS PINB2
