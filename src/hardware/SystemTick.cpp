@@ -36,7 +36,7 @@ static class : public ITimeSource {
     TIMSK0 = _BV(OCIE0A);
   }
 
-  TickCount ticks() override
+  TickCount ticks() const override
   {
     TickCount previous;
     TickCount current = current_ticks;
