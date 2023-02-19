@@ -2,7 +2,6 @@ include tools/setup.mk
 
 TARGET := tiny
 MCU := atmega328p
-FRAMEWORK ?= tiny
 BUILD_DIR := ./build
 DEVICE_PACK := Microchip.ATmega_DFP.2.3.126
 
