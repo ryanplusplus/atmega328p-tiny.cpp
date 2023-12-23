@@ -6,8 +6,8 @@
 #ifndef SpiController_hpp
 #define SpiController_hpp
 
-#include <stdint.h>
 #include <stdbool.h>
+#include <stdint.h>
 #include "tiny/hal/ISpi.hpp"
 
 class SpiController {

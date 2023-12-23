@@ -3,8 +3,8 @@
  * @brief
  */
 
-#include <stddef.h>
 #include <avr/io.h>
+#include <stddef.h>
 #include "TwiController.hpp"
 
 using namespace tiny;
