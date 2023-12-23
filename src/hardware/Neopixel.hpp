@@ -70,7 +70,7 @@ namespace Neopixel {
       });
     }
 
-    void write_all(const Color* data, uint16_t count)
+    void write_all(const Color& data, uint16_t count)
     {
       Interrupts::critical_section([&]() {
         for(uint16_t i = 0; i < count; i++) {
